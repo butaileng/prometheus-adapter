@@ -1,5 +1,8 @@
 ARG ARCH
-ARG GO_VERSION
+ARG GO_VERSION=1.20
+ARG ARCH=arm64
+ARG GOARCH
+ARG GOARCH=arm64
 
 FROM golang:${GO_VERSION} as build
 
@@ -12,7 +15,7 @@ COPY pkg pkg
 COPY cmd cmd
 COPY Makefile Makefile
 
-ARG ARCH
+ARG ARCH=arm64
 RUN make prometheus-adapter
 
 FROM gcr.io/distroless/static:latest-$ARCH
